@@ -30,7 +30,7 @@ screen = pygame.display.set_mode((src_width, src_height))
 pygame.display.set_caption('Tic Tac Toe')
 screen.fill(BLACK)
 title = pygame.font.Font('freesansbold.ttf', 90)
-play = pygame.font.Font('freesansbold.ttf', 30)
+play = pygame.font.Font('freesansbold.ttf', 50)
 end = 1.0
 start = False
 first = False
@@ -76,7 +76,7 @@ while run == True:
 
     text = play.render('Play', True, hover_color)
     textRect = text.get_rect()
-    textRect.center = (300, 300)
+    textRect.center = (300, 650)
     exit = play.render('Exit', True, hover_color_exit)
     exitRect = exit.get_rect()
     exitRect.center = (300, 350)
@@ -91,27 +91,27 @@ while run == True:
         pygame.display.update()
 
 
-        if 269 <= pos[0] <= 332 and 336 <= pos[1] <= 360:
+        if 256 <= pos[0] <= 341 and 328 <= pos[1] <= 362:
             hover_color_exit = RED
             if pressed1 == 1:
                 run = False
 
-        if 331 < pos[0] or pos[0] < 268 or 361 < pos[1] or pos[1] < 335:
+        if 341 < pos[0] or pos[0] < 256 or 362 < pos[1] or pos[1] < 330:
             hover_color_exit = WHITE
 
-        if 269 <= pos[0] <= 332 and 284 <= pos[1] <= 306:
+        if 253 <= pos[0] <= 351 and 628 <= pos[1] <= 663:
             hover_color = GREEN
             if pressed1 == 1:
                 start = True
                 end = 2.0
                 hit = 0
 
-        if 331 < pos[0] or pos[0] < 268 or 307 < pos[1] or pos[1] < 283:
+        if 351 < pos[0] or pos[0] < 253 or 663 < pos[1] or pos[1] < 628:
             hover_color = WHITE
 
     if start == True:
         if first == False:
-            screen.fill(BLACK)
+            pygame.display.update(pygame.draw.rect(screen, BLACK, (0, 0, 600, 600)))
             first = True
 
         pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 0, 5, 600)))
@@ -306,7 +306,7 @@ while run == True:
             exitRect = exit.get_rect()
             exitRect.center = (300, 350)
 
-            if 269 <= pos[0] <= 332 and 336 <= pos[1] <= 360:
+            if 256 <= pos[0] <= 341 and 328 <= pos[1] <= 362:
                 hover_color_exit = RED
                 if pressed1 == 1:
                     run = False
