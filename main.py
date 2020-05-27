@@ -20,7 +20,7 @@ positions = [[0, 0, 0],
 
 # Who Starts?
 number = random.randint(1, 2)
-dict = {1: "X", 2: "O"}
+dict = {1: "X", 2: "O", 3: "No one"}
 winner = None
 
 # Screen
@@ -36,6 +36,7 @@ start = False
 first = False
 
 def ending (positions):
+    win = 3
     if positions[0][0] == positions[0][1] == positions[0][2] and positions[0][0] != 0:
         win = positions[0][0]
 
@@ -59,6 +60,7 @@ def ending (positions):
 
     if positions[0][2] == positions[1][1] == positions[2][0] and positions[1][1] != 0:
         win = positions[0][2]
+
 
     return win
 
@@ -293,13 +295,27 @@ while run == True:
             pygame.display.update(pygame.draw.line(screen, GREEN, (590, 10), (10, 590), 10))
             end = True
 
+        index = 0
+        for i in range(0, 3):
+            for j in range(0, 3):
+
+                if positions[i][j] != 0:
+                    index += 1
+
+        if index == 9:
+            end = True
 
         if end == True:
+
             winner = ending(positions)
+            print(winner)
             if dict[winner] == "O":
                 title_bg = title.render(dict[winner] + " Wins", True, BLUE)
-            else:
+
+            elif dict[winner] == "X":
                 title_bg = title.render(dict[winner] + " Wins", True, ORANGE)
+            else:
+                title_bg = title.render(dict[winner] + " Wins", True, WHITE)
             titleRect = title_bg.get_rect()
             titleRect.center = (300, 200)
             exit = play.render('Exit', True, hover_color_exit)
