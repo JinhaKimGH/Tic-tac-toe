@@ -308,7 +308,6 @@ while run == True:
         if end == True:
 
             winner = ending(positions)
-            print(winner)
             if dict[winner] == "O":
                 title_bg = title.render(dict[winner] + " Wins", True, BLUE)
 
