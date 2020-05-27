@@ -18,6 +18,17 @@ positions = [[0, 0, 0],
              [0, 0, 0],
              [0, 0, 0]]
 
+#Sounds
+pygame.mixer.music.load('boogie.mp3')
+pygame.mixer.music.play(-1)
+x_sound = pygame.mixer.Sound("cowbell.wav")
+o_sound = pygame.mixer.Sound("boing.wav")
+click = pygame.mixer.Sound("click.wav")
+cheer = pygame.mixer.Sound("cheer.wav")
+boo = pygame.mixer.Sound("boo.wav")
+sound = 0
+
+
 # Who Starts?
 number = random.randint(1, 2)
 dict = {1: "X", 2: "O", 3: "No one"}
@@ -105,6 +116,7 @@ while run == True:
             hover_color = GREEN
             if pressed1 == 1:
                 start = True
+                pygame.mixer.Sound.play(click)
                 end = 2.0
                 hit = 0
 
@@ -135,123 +147,141 @@ while run == True:
 
         if dict[number] == "X":
             pygame.display.update(pygame.draw.rect(screen, BLACK, (150, 620, 300, 70)))
-            pygame.display.update(pygame.draw.line(screen, ORANGE, (280, 632), (320, 669), 3))
-            pygame.display.update(pygame.draw.line(screen, ORANGE, (320, 632), (280, 669), 3))
+            pygame.display.update(pygame.draw.line(screen, ORANGE, (280, 632), (320, 669), 5))
+            pygame.display.update(pygame.draw.line(screen, ORANGE, (320, 632), (280, 669), 5))
 
         if pressed1 == True and end/4 == 0.75:
             if 0 < pos[0] < 200 and 0 < pos[1] < 200:
 
                 if dict[number] == "X" and positions[0][0] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (0, 0), (200, 200), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 0), (0, 200), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (0, 0), (200, 200), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 0), (0, 200), 10))
                     number += 1
                     positions[0][0] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[0][0] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (100, 100), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (100, 100), 90, 10))
                     number -= 1
                     positions[0][0] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 200 < pos[0] < 400 and 0 < pos[1] < 200:
 
                 if dict[number] == "X" and positions[0][1] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 0), (400, 200), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 0), (200, 200), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 0), (400, 200), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 0), (200, 200), 10))
                     number += 1
                     positions[0][1] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[0][1] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 100), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 100), 90, 10))
                     number -= 1
                     positions[0][1] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 400 < pos[0] < 600 and 0 < pos[1] < 200:
                 if dict[number] == "X" and positions[0][2] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 0), (600, 200), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (600, 0), (400, 200), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 0), (600, 200), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (600, 0), (400, 200), 10))
                     number += 1
                     positions[0][2] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[0][2] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (500, 100), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (500, 100), 90, 10))
                     number -= 1
                     positions[0][2] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 0 < pos[0] < 200 and 200 < pos[1] < 400:
 
                 if dict[number] == "X" and positions[1][0] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (0, 200), (200, 400), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 200), (0, 400), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (0, 200), (200, 400), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 200), (0, 400), 10))
                     number += 1
                     positions[1][0] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[1][0] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (100, 300), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (100, 300), 90, 10))
                     number -= 1
                     positions[1][0] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 200 < pos[0] < 400 and 200 < pos[1] < 400:
 
                 if dict[number] == "X" and positions[1][1] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 200), (400, 400), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 200), (200, 400), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 200), (400, 400), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 200), (200, 400), 10))
                     number += 1
                     positions[1][1] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[1][1] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 300), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 300), 90, 10))
                     number -= 1
                     positions[1][1] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 400 < pos[0] < 600 and 200 < pos[1] < 400:
                 if dict[number] == "X" and positions[1][2] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 200), (600, 400), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (600, 200), (400, 400), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 200), (600, 400), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (600, 200), (400, 400), 10))
                     number += 1
                     positions[1][2] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[1][2] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (500, 300), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (500, 300), 90, 10))
                     number -= 1
                     positions[1][2] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 0 < pos[0] < 200 and 400 < pos[1] < 600:
 
                 if dict[number] == "X" and positions[2][0] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (0, 400), (200, 600), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 400), (0, 600), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (0, 400), (200, 600), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 400), (0, 600), 10))
                     number += 1
                     positions[2][0] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[2][0] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (100, 500), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (100, 500), 90, 10))
                     number -= 1
                     positions[2][0] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 200 < pos[0] < 400 and 400 < pos[1] < 600:
 
                 if dict[number] == "X" and positions[2][1] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 400), (400, 600), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 400), (200, 600), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (200, 400), (400, 600), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 400), (200, 600), 10))
                     number += 1
                     positions[2][1] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[2][1] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 500), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 500), 90, 10))
                     number -= 1
                     positions[2][1] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
             if 400 < pos[0] < 600 and 400 < pos[1] < 600:
                 if dict[number] == "X" and positions[2][2] == 0:
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 400), (600, 600), 3))
-                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 600), (600, 400), 3))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 400), (600, 600), 10))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (400, 600), (600, 400), 10))
                     number += 1
                     positions[2][2] = 1
+                    pygame.mixer.Sound.play(x_sound)
 
                 if dict[number] == "O" and positions[2][2] == 0:
-                    pygame.display.update(pygame.draw.circle(screen, BLUE, (500, 500), 70, 3))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (500, 500), 90, 10))
                     number -= 1
                     positions[2][2] = 2
+                    pygame.mixer.Sound.play(o_sound)
 
         if end != True:
             end = 3.0
@@ -306,15 +336,25 @@ while run == True:
             end = True
 
         if end == True:
+            pygame.mixer.music.stop()
 
             winner = ending(positions)
             if dict[winner] == "O":
                 title_bg = title.render(dict[winner] + " Wins", True, BLUE)
+                if sound == 0:
+                    pygame.mixer.Sound.play(cheer)
+                    sound += 1
 
             elif dict[winner] == "X":
                 title_bg = title.render(dict[winner] + " Wins", True, ORANGE)
+                if sound == 0:
+                    pygame.mixer.Sound.play(cheer)
+                    sound += 1
             else:
                 title_bg = title.render(dict[winner] + " Wins", True, WHITE)
+                if sound == 0:
+                    pygame.mixer.Sound.play(boo)
+                    sound += 1
             titleRect = title_bg.get_rect()
             titleRect.center = (300, 200)
             exit = play.render('Exit', True, hover_color_exit)
