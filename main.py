@@ -2,10 +2,6 @@ import pygame
 import random
 pygame.init()
 
-#keep track of scores, be able to play it more than once
-
-
-
 #Colours
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -382,12 +378,12 @@ while replay == True:
                 titleRect.center = (300, 200)
                 exit = play.render('Exit', True, hover_color_exit)
                 exitRect = exit.get_rect()
-                exitRect.center = (300, 650)
+                exitRect.center = (300, 350)
                 playAgain = play.render('Play', True, hover_color_play)
                 playRect = playAgain.get_rect()
-                playRect.center = (300, 350)
+                playRect.center = (300, 650)
 
-                if 249 <= pos[0] <= 345 and 329 <= pos[1] <= 362:
+                if 249 <= pos[0] <= 345 and 629 <= pos[1] <= 662:
                     hover_color_play = GREEN
                     if pressed1 == 1:
                         positions = [[0, 0, 0],
@@ -403,7 +399,7 @@ while replay == True:
                 else:
                     hover_color_play = WHITE
 
-                if 254 <= pos[0]<= 343 and 629 <= pos[1] <= 661:
+                if 254 <= pos[0]<= 343 and 329 <= pos[1] <= 361:
                     hover_color_exit = RED
                     if pressed1 == 1:
                         run = False
