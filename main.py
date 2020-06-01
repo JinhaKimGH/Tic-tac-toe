@@ -36,6 +36,7 @@ dict = {1: "X", 2: "O", 3: "No one"}
 winner = None
 score_x = 0
 score_o = 0
+pause = 0
 
 # Screen
 src_width = 600
@@ -87,6 +88,7 @@ while replay == True:
     run = True
     winner = None
     sound = 0
+    pause = 0
     while run == True:
 
         caption = title.render('Tic Tac Toe', True, WHITE)
@@ -123,6 +125,7 @@ while replay == True:
                 hover_color_exit = RED
                 if pressed1 == 1:
                     run = False
+                    replay = False
 
             if 341 < pos[0] or pos[0] < 256 or 362 < pos[1] or pos[1] < 330:
                 hover_color_exit = WHITE
@@ -351,70 +354,76 @@ while replay == True:
                 end = True
 
             if end == True:
-                pygame.mixer.music.stop()
+                if pause == 10:
+                    screen.fill(BLACK)
+                    pygame.mixer.music.stop()
 
-                winner = ending(positions)
-                if dict[winner] == "O":
-                    title_bg = title.render(dict[winner] + " Wins", True, BLUE)
+                    winner = ending(positions)
+                    if dict[winner] == "O":
+                        title_bg = title.render(dict[winner] + " Wins", True, BLUE)
 
-                    if sound == 0:
-                        pygame.mixer.Sound.play(cheer)
-                        score_o += 1
-                        sound += 1
+                        if sound == 0:
+                            pygame.mixer.Sound.play(cheer)
+                            score_o += 1
+                            sound += 1
 
-                elif dict[winner] == "X":
-                    title_bg = title.render(dict[winner] + " Wins", True, ORANGE)
+                    elif dict[winner] == "X":
+                        title_bg = title.render(dict[winner] + " Wins", True, ORANGE)
 
-                    if sound == 0:
-                        pygame.mixer.Sound.play(cheer)
-                        score_x += 1
-                        sound += 1
+                        if sound == 0:
+                            pygame.mixer.Sound.play(cheer)
+                            score_x += 1
+                            sound += 1
+                    else:
+                        title_bg = title.render(dict[winner] + " Wins", True, WHITE)
+                        if sound == 0:
+                            pygame.mixer.Sound.play(boo)
+                            sound += 1
+                    titleRect = title_bg.get_rect()
+                    titleRect.center = (300, 200)
+                    exit = play.render('Exit', True, hover_color_exit)
+                    exitRect = exit.get_rect()
+                    exitRect.center = (300, 350)
+                    playAgain = play.render('Play', True, hover_color_play)
+                    playRect = playAgain.get_rect()
+                    playRect.center = (300, 650)
+
+                    if 249 <= pos[0] <= 345 and 629 <= pos[1] <= 662:
+                        hover_color_play = GREEN
+                        if pressed1 == 1:
+                            positions = [[0, 0, 0],
+                                         [0, 0, 0],
+                                         [0, 0, 0]]
+                            pygame.mixer.stop()
+                            pygame.mixer.music.load('boogie.mp3')
+                            pygame.mixer.music.play(-1)
+
+                            end = False
+                            run = False
+
+                    else:
+                        hover_color_play = WHITE
+
+                    if 254 <= pos[0]<= 343 and 329 <= pos[1] <= 361:
+                        hover_color_exit = RED
+                        if pressed1 == 1:
+                            run = False
+                            replay = False
+
+                    else:
+                        hover_color_exit = WHITE
+
+
+
+
+                    screen.blit(title_bg, titleRect)
+                    screen.blit(playAgain, playRect)
+                    screen.blit(exit, exitRect)
+                    screen.blit(scoreboardX, scoreboardXRect)
+                    screen.blit(scoreboardO, scoreboardORect)
+                    pygame.display.update()
                 else:
-                    title_bg = title.render(dict[winner] + " Wins", True, WHITE)
-                    if sound == 0:
-                        pygame.mixer.Sound.play(boo)
-                        sound += 1
-                titleRect = title_bg.get_rect()
-                titleRect.center = (300, 200)
-                exit = play.render('Exit', True, hover_color_exit)
-                exitRect = exit.get_rect()
-                exitRect.center = (300, 350)
-                playAgain = play.render('Play', True, hover_color_play)
-                playRect = playAgain.get_rect()
-                playRect.center = (300, 650)
-
-                if 249 <= pos[0] <= 345 and 629 <= pos[1] <= 662:
-                    hover_color_play = GREEN
-                    if pressed1 == 1:
-                        positions = [[0, 0, 0],
-                                     [0, 0, 0],
-                                     [0, 0, 0]]
-                        pygame.mixer.stop()
-                        pygame.mixer.music.load('boogie.mp3')
-                        pygame.mixer.music.play(-1)
-
-                        end = False
-                        run = False
-
-                else:
-                    hover_color_play = WHITE
-
-                if 254 <= pos[0]<= 343 and 329 <= pos[1] <= 361:
-                    hover_color_exit = RED
-                    if pressed1 == 1:
-                        run = False
-                        replay = False
-
-                else:
-                    hover_color_exit = WHITE
-
-
-
-
-                screen.blit(title_bg, titleRect)
-                screen.blit(playAgain, playRect)
-                screen.blit(exit, exitRect)
-                pygame.display.update()
+                    pause += 1
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
