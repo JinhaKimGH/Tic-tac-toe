@@ -148,25 +148,25 @@ while replay == True:
             if first == False:
                 pygame.display.update(pygame.draw.rect(screen, BLACK, (0, 0, 600, 600)))
                 first = True
+            if pause != 10:
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 0, 5, 600)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (200, 0, 5, 600)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (400, 0, 5, 600)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (595, 0, 5, 600)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 0, 600, 5)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 200, 600, 5)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 400, 600, 5)))
+                pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 595, 600, 5)))
 
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 0, 5, 600)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (200, 0, 5, 600)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (400, 0, 5, 600)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (595, 0, 5, 600)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 0, 600, 5)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 200, 600, 5)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 400, 600, 5)))
-            pygame.display.update(pygame.draw.rect(screen, GREEN, (0, 595, 600, 5)))
 
+                if dict[number] == "O":
+                    pygame.display.update(pygame.draw.rect(screen, BLACK, (150, 620, 300, 70)))
+                    pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 650), 30, 3))
 
-            if dict[number] == "O":
-                pygame.display.update(pygame.draw.rect(screen, BLACK, (150, 620, 300, 70)))
-                pygame.display.update(pygame.draw.circle(screen, BLUE, (300, 650), 30, 3))
-
-            if dict[number] == "X":
-                pygame.display.update(pygame.draw.rect(screen, BLACK, (150, 620, 300, 70)))
-                pygame.display.update(pygame.draw.line(screen, ORANGE, (280, 632), (320, 669), 5))
-                pygame.display.update(pygame.draw.line(screen, ORANGE, (320, 632), (280, 669), 5))
+                if dict[number] == "X":
+                    pygame.display.update(pygame.draw.rect(screen, BLACK, (150, 620, 300, 70)))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (280, 632), (320, 669), 5))
+                    pygame.display.update(pygame.draw.line(screen, ORANGE, (320, 632), (280, 669), 5))
 
             if pressed1 == True and end/4 == 0.75:
                 if 0 < pos[0] < 200 and 0 < pos[1] < 200:
@@ -304,44 +304,46 @@ while replay == True:
             if end != True:
                 end = 3.0
 
-            if positions[0][0] == positions[0][1] == positions[0][2] and positions[0][0] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (10, 100), (590, 100), 10))
-                end = True
+            if pause != 10:
+
+                if positions[0][0] == positions[0][1] == positions[0][2] and positions[0][0] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (10, 100), (590, 100), 10))
+                    end = True
 
 
-            if positions[1][0] == positions[1][1] == positions[1][2] and positions[1][0] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (10, 300), (590, 300), 10))
-                end = True
+                if positions[1][0] == positions[1][1] == positions[1][2] and positions[1][0] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (10, 300), (590, 300), 10))
+                    end = True
 
 
-            if positions[2][0] == positions[2][1] == positions[2][2] and positions[2][0] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (10, 500), (590, 500), 10))
-                end = True
+                if positions[2][0] == positions[2][1] == positions[2][2] and positions[2][0] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (10, 500), (590, 500), 10))
+                    end = True
 
 
-            if positions[0][0] == positions[1][0] == positions[2][0] and positions[0][0] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (100, 10), (100, 590), 10))
-                end = True
+                if positions[0][0] == positions[1][0] == positions[2][0] and positions[0][0] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (100, 10), (100, 590), 10))
+                    end = True
 
 
-            if positions[0][1] == positions[1][1] == positions[2][1] and positions[0][1] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (300, 10), (300, 590), 10))
-                end = True
+                if positions[0][1] == positions[1][1] == positions[2][1] and positions[0][1] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (300, 10), (300, 590), 10))
+                    end = True
 
 
-            if positions[0][2] == positions[1][2] == positions[2][2] and positions[0][2] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (500, 10), (500, 590), 10))
-                end = True
+                if positions[0][2] == positions[1][2] == positions[2][2] and positions[0][2] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (500, 10), (500, 590), 10))
+                    end = True
 
 
-            if positions[0][0] == positions[1][1] == positions[2][2] and positions[0][0] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (10, 10), (590, 590), 10))
-                end = True
+                if positions[0][0] == positions[1][1] == positions[2][2] and positions[0][0] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (10, 10), (590, 590), 10))
+                    end = True
 
 
-            if positions[0][2] == positions[1][1] == positions[2][0] and positions[1][1] != 0:
-                pygame.display.update(pygame.draw.line(screen, GREEN, (590, 10), (10, 590), 10))
-                end = True
+                if positions[0][2] == positions[1][1] == positions[2][0] and positions[1][1] != 0:
+                    pygame.display.update(pygame.draw.line(screen, GREEN, (590, 10), (10, 590), 10))
+                    end = True
 
             index = 0
             for i in range(0, 3):
